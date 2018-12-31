@@ -9,9 +9,9 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/person">
+          <router-link to="/program">
             <img src="@/assets/images/bg.jpg" alt>
-            <p>Person</p>
+            <p>Program</p>
           </router-link>
         </li>
         <li>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import $ from "jquery";
 import S from "../../assets/audio/bg.mp3";
 export default {
   name: "hello",
@@ -55,7 +54,7 @@ export default {
   }
 };
 $(function() {
-  alert("Welcome to my world");
+  alert("推荐使用谷歌浏览器访问");
 });
 </script>
 
