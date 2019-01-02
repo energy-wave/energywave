@@ -4,19 +4,19 @@
       <ul>
         <li>
           <router-link to="/person" tag="a">
-            <img src="@/assets/images/bg.jpg" alt>
+            <img src="@/assets/images/nav-img-1.jpg" alt>
             <p>Person</p>
           </router-link>
         </li>
         <li>
           <router-link to="/program">
-            <img src="@/assets/images/bg.jpg" alt>
+            <img src="@/assets/images/nav-img-2.jpg" alt>
             <p>Program</p>
           </router-link>
         </li>
         <li>
           <router-link to="/person">
-            <img src="../../assets/images/bg.jpg" alt>
+            <img src="../../assets/images/nav-img-3.jpg" alt>
             <p>Person</p>
           </router-link>
         </li>
@@ -40,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    this.toggleSound();
+    // this.toggleSound();
   },
   methods: {
     // toggleSound() {
@@ -53,9 +53,9 @@ export default {
     // }
   }
 };
-$(function() {
-  alert("推荐使用谷歌浏览器访问");
-});
+// $(function() {
+//   alert("推荐使用谷歌浏览器访问");
+// });
 </script>
 
 <style scoped lang="less">
@@ -80,7 +80,7 @@ li {
   width: 30%;
   float: left;
   margin: 30px 1.5%;
-  opacity: 0.8;
+  opacity: 0.5;
   img {
     width: 100%;
     border-radius: 20px;
@@ -96,6 +96,9 @@ li {
   a {
     text-decoration: none;
   }
+}
+li:hover {
+  opacity: 1;
 }
 .center {
   text-align: center;

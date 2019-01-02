@@ -72,46 +72,33 @@
     <div id="demo" class="carousel slide" data-ride="carousel">
       <!-- 指示符 -->
       <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
+        <li
+          data-target="#demo"
+          data-slide-to="0"
+          v-for="(item,index) in img"
+          :key="item.id"
+          :class="[{'active':!index}]"
+        ></li>
       </ul>
-
       <!-- 轮播图片 -->
       <div class="ew-banner">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div
+            v-for="(item,index) in img"
+            :key="item.id"
+            :class="['carousel-item',{'active':!index}]"
+          >
             <a
               href="#"
-              class="pc-img d-none d-md-block"
-              style="background-image:url(https://static.runoob.com/images/mix/img_fjords_wide.jpg)"
+              class="pc-img"
+              :style="{backgroundImage:'url('+item.pAddress+')'}"
+              v-if="flag"
             ></a>
-            <a href="#" class="m-img d-block d-md-none">
-              <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
-            </a>
-          </div>
-          <div class="carousel-item">
-            <a
-              href="#"
-              class="pc-img d-none d-md-block"
-              style="background-image:url(https://static.runoob.com/images/mix/img_fjords_wide.jpg)"
-            ></a>
-            <a href="#" class="m-img d-block d-md-none">
-              <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
-            </a>
-          </div>
-          <div class="carousel-item">
-            <a
-              href="#"
-              class="pc-img d-none d-md-block"
-              style="background-image:url(https://static.runoob.com/images/mix/img_fjords_wide.jpg)"
-            ></a>
-            <a href="#" class="m-img d-block d-md-none">
-              <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+            <a href="#" class="m-img" v-else>
+              <img :src="item.mAddress">
             </a>
           </div>
         </div>
-
         <!-- 左右切换按钮 -->
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -132,7 +119,12 @@
 export default {
   name: "program",
   data() {
-    return {};
+    return {
+      items: [],
+      img: [],
+      flag: "",
+      style: ""
+    };
   },
   created() {
     this.banner();
@@ -140,13 +132,16 @@ export default {
   methods: {
     banner() {
       this.$http
-        .jsonp("http://api.douban.com/v2/movie/top250?start=25&count=25")
+        .get("http://www.energywave.top:3053/api/imgUrl")
         .then(result => {
-          var isMobile = $(window).width() < 500000 ? "ture" : false;
+          var isMobile = $(window).width() > 768 ? "ture" : false;
           console.log(isMobile);
-          console.log(result);
+          this.flag = isMobile;
+          console.log(result.body);
+          this.img = result.body;
         });
     }
+    // 未开发屏幕监视
   }
 };
 </script>
@@ -218,5 +213,13 @@ a:hover {
     display: block;
     width: 100%;
   }
+}
+//轮播图指示器颜色
+.carousel-indicators .active {
+  background-color: #000;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: #000;
 }
 </style>
