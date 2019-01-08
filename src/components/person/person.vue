@@ -69,8 +69,8 @@
           </li>
         </ul>
         <!-- 转义符 \  实体 &lt; -->
-        <a class="left" href="javascript:;">&lt;</a>
-        <a class="right" href="javascript:;">&gt;</a>
+        <span class="left" @click="leftClick">&lt;</span>
+        <span class="right" @click="rigrtClick">&gt;</span>
       </div>
     </section>
     <!-- 兴趣 -->
@@ -81,7 +81,45 @@
 </template>
 <script>
 export default {
-  name: "person"
+  name: "person",
+  data() {
+    return {
+      index: 0,
+      flag: 1
+    };
+  },
+  methods: {
+    leftClick() {
+      if (this.flag == 0) return;
+      this.flag = 1;
+      var angle = -this.index-- * 90;
+      this.index = this.index--;
+      console.log(this.flag);
+      $(".ew-lbt li")
+        .css("transform", "rotateX(" + angle + "deg)")
+        .each(function(i) {
+          $(this).css("transition", i * 0.25 + "s");
+        });
+    },
+    rigrtClick() {
+      if (this.flag == 0) return;
+      this.flag = 1;
+      var angle = -this.index++ * 90;
+      this.index = this.index++;
+      console.log(this.index);
+      $(".ew-lbt li")
+        .css("transform", "rotateX(" + angle + "deg)")
+        .each(function(i) {
+          $(this).css("transition", i * 0.25 + "s");
+        });
+    }
+    // changeClick(){
+    //   $(".ew-lbt li:last").on("transitionend", function() {
+    //     this.flag = 1;
+    //   });
+    // }
+    // ture 未定义
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -95,7 +133,7 @@ export default {
     .logo {
       width: 100px;
       height: 75px;
-      background: url("~@/assets/images/nav_brand.png") no-repeat center;
+      background: url("~@/assets/images/person-logo.png") no-repeat center;
       float: left;
     }
     .nav {
@@ -167,63 +205,72 @@ export default {
       list-style: none;
       width: 100%;
       height: 100%;
-      transform-style: preserve-3d;
-      .li {
-        width: 112px;
+      li {
+        width: 189.6px;
         height: 100%;
         float: left;
         position: relative;
         transform-style: preserve-3d;
         transition: all 1s;
+        &:nth-child(1) {
+          span {
+            background-position: 0 0;
+          }
+        }
+        &:nth-child(2) {
+          span {
+            background-position: -189.6px 0;
+          }
+        }
+        &:nth-child(3) {
+          span {
+            background-position: -379.2px 0;
+          }
+        }
+        &:nth-child(4) {
+          span {
+            background-position: -568.8px 0;
+          }
+        }
+        &:nth-child(5) {
+          span {
+            background-position: -758.4px 0;
+          }
+        }
         span {
           position: absolute;
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
-          // background: url("images/1.jpg") no-repeat;
+          background-repeat: no-repeat;
           &:nth-child(1) {
-            // background-image: url("images/1.jpg");
-            transform: translateZ(150px);
-            span {
-              background-position: 0 0;
-            }
+            background-image: url("~@/assets/images/1.jpg");
+            transform: translateZ(249px);
           }
           &:nth-child(2) {
-            // background-image: url("images/2.jpg");
-            transform: rotateX(90deg) translateZ(150px);
-            span {
-              background-position: -112px 0;
-            }
+            background-image: url("~@/assets/images/2.jpg");
+            transform: rotateX(90deg) translateZ(249px);
           }
           &:nth-child(3) {
-            // background-image: url("images/3.jpg");
-            transform: rotateX(180deg) translateZ(150px);
-            span {
-              background-position: -224px 0;
-            }
+            background-image: url("~@/assets/images/3.jpg");
+            transform: rotateX(180deg) translateZ(249px);
           }
-          :nth-child(4) {
-            // background-image: url("images/4.jpg");
-            transform: rotateX(270deg) translateZ(150px);
-            span {
-              background-position: -336px 0;
-            }
+          &:nth-child(4) {
+            background-image: url("~@/assets/images/4.jpg");
+            transform: rotateX(270deg) translateZ(249px);
           }
-          // :nth-child(5) {
-          //   span{
-          //   background-position: -448px 0;
-          // }
         }
       }
     }
     .left,
     .right {
+      cursor: pointer;
       position: absolute;
       width: 50px;
       height: 70px;
       background: rgba(0, 0, 0, 0.2);
-      top: 115px;
+      top: 215px;
       text-align: center;
       line-height: 70px;
       font-size: 20px;
