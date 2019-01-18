@@ -17,7 +17,7 @@
         <li>
           <router-link to="/person">
             <img src="../../assets/images/nav-img-3.jpg" alt>
-            <p>Person</p>
+            <p>About</p>
           </router-link>
         </li>
       </ul>

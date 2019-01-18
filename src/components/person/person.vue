@@ -9,7 +9,7 @@
             <a href="#" class="active">首页</a>
           </li>
           <li>
-            <a href="#">下载</a>
+            <a href="#">信息</a>
           </li>
           <li>
             <a href="#">动态</a>
@@ -18,10 +18,10 @@
         <div class="other">
           <ul>
             <li>
-              <a href="#">登录</a>
+              <a href="#">留言</a>
             </li>
             <li>
-              <a href="#">qq安全</a>
+              <a href="#">Program</a>
             </li>
             <li>
               <a href="#">登录</a>
@@ -74,9 +74,52 @@
       </div>
     </section>
     <!-- 兴趣 -->
-    <section></section>
+    <section class="person-look-1">
+      <h1>李学博</h1>
+      <div class="look-1" data-stellar-background-ratio="0.5"></div>
+      <div class="content">
+        <div class="piao"></div>
+        <h2>Just a starting point</h2>
+        <p>最美的期待，全新的起点</p>
+      </div>
+    </section>
+    <section class="person-look-2">
+      <div class="look-2" data-stellar-background-ratio="0.5"></div>
+      <div class="content">
+        <div class="piao"></div>
+        <h2>Code，everything</h2>
+        <p>前端工程，将所见掌控于代码</p>
+      </div>
+    </section>
+    <section class="person-look-3">
+      <div class="look-3" data-stellar-background-ratio="0.5"></div>
+      <div class="content">
+        <div class="piao"></div>
+        <h2>My phone</h2>
+        <p>欢迎致电157-7125-3536</p>
+      </div>
+    </section>
     <!-- 底部 -->
-    <footer></footer>
+    <footer>
+      <div class="content">
+        <div class="info">
+          <a href="#" target="_blank">
+            <img src="@/assets/images/Photoshop.png" alt>
+          </a>
+          <a href="#" target="_blank">
+            <img src="@/assets/images/h5c3.png" alt>
+          </a>
+          <a href="#" target="_blank">
+            <img src="@/assets/images/JavaScript.png" alt>
+          </a>
+          <a href="#" target="_blank">
+            <img src="@/assets/images/Vue.png" alt>
+          </a>
+        </div>
+        <p>Copyright © 2018-2019 by energywave</p>
+        <p>蒙ICP备18005616号</p>
+      </div>
+    </footer>
   </div>
 </template>
 <script>
@@ -84,14 +127,12 @@ export default {
   name: "person",
   data() {
     return {
-      index: 0,
-      flag: 1
+      index: 1,
+      timeId: 0
     };
   },
   methods: {
     leftClick() {
-      if (this.flag == 0) return;
-      this.flag = 1;
       var angle = -this.index-- * 90;
       this.index = this.index--;
       console.log(this.flag);
@@ -102,8 +143,6 @@ export default {
         });
     },
     rigrtClick() {
-      if (this.flag == 0) return;
-      this.flag = 1;
       var angle = -this.index++ * 90;
       this.index = this.index++;
       console.log(this.index);
@@ -112,13 +151,25 @@ export default {
         .each(function(i) {
           $(this).css("transition", i * 0.25 + "s");
         });
+    },
+    stellar() {
+      $(function() {
+        $.stellar({
+          horizontalScrolling: false,
+          responsive: true
+        });
+      });
     }
-    // changeClick(){
-    //   $(".ew-lbt li:last").on("transitionend", function() {
-    //     this.flag = 1;
-    //   });
-    // }
-    // ture 未定义
+  },
+  mounted() {
+    this.timeId = setInterval(this.rigrtClick, 2500);
+    this.stellar();
+  },
+  beforeUpdate() {
+    clearInterval(this.timeId);
+  },
+  beforeDestroy() {
+    clearInterval(this.timeId);
   }
 };
 </script>
@@ -127,7 +178,7 @@ export default {
   height: 150px;
   background: url("~@/assets/images/nav_bg.png") repeat-x;
   .wrapper {
-    width: 1080px;
+    width: 80%;
     height: 75px;
     margin: 0 auto;
     .logo {
@@ -280,6 +331,154 @@ export default {
     }
     .right {
       right: 0;
+    }
+  }
+}
+.person-look-1 {
+  h1 {
+    height: 300px;
+    background: url("~@/assets/images/look-0.jpg") no-repeat center/cover;
+    font-size: 0;
+    margin: 0;
+  }
+  .look-1 {
+    height: 500px;
+    background: url("~@/assets/images/look-1.jpg") no-repeat center/cover;
+  }
+  .content {
+    height: 500px;
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+    .piao {
+      width: 500px;
+      height: 250px;
+      background: url("~@/assets/images/look-1-1.png") no-repeat center/cover;
+      position: absolute;
+      left: 0;
+      top: 100px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    h2 {
+      float: right;
+      padding-top: 100px;
+      width: 500px;
+      text-align: right;
+      font-size: 40px;
+    }
+    p {
+      padding-top: 50px;
+      float: right;
+      width: 500px;
+      text-align: right;
+      font-size: 18px;
+      text-shadow: 0 0 2px #333;
+    }
+  }
+}
+.person-look-2 {
+  .look-2 {
+    height: 500px;
+    background: url("~@/assets/images/look-2.jpg") no-repeat center/cover;
+  }
+  .content {
+    height: 500px;
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+    .piao {
+      width: 500px;
+      height: 280px;
+      background: url("~@/assets/images/look-2-2.png") no-repeat center/cover;
+      position: absolute;
+      right: -60px;
+      top: 100px;
+    }
+    h2 {
+      float: left;
+      padding-top: 100px;
+      width: 500px;
+      text-align: left;
+      font-size: 40px;
+    }
+    p {
+      padding-top: 50px;
+      float: left;
+      width: 500px;
+      text-align: left;
+      font-size: 18px;
+      text-shadow: 0 0 2px #333;
+    }
+  }
+}
+.person-look-3 {
+  .look-3 {
+    height: 500px;
+    background: url("~@/assets/images/look-3.jpg") no-repeat center/cover;
+  }
+  .content {
+    height: 500px;
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+    .piao {
+      width: 700px;
+      height: 700px;
+      background: url("~@/assets/images/look-3-3.png") no-repeat center
+        top/cover;
+      position: absolute;
+      left: 0;
+      top: -200px;
+    }
+    h2 {
+      float: right;
+      padding-top: 100px;
+      width: 500px;
+      text-align: right;
+      font-size: 40px;
+    }
+    p {
+      padding-top: 50px;
+      float: right;
+      width: 500px;
+      text-align: right;
+      font-size: 18px;
+      text-shadow: 0 0 2px #333;
+    }
+  }
+}
+footer {
+  .content {
+    height: 250px;
+    background: #2a2a2a;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 50px;
+    color: #666;
+    .info {
+      width: 800px;
+      height: 150px;
+      margin: 0 auto;
+      display: block;
+      a {
+        float: left;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        padding-top: 50px;
+        width: 80px;
+        margin: 0 60px;
+        img {
+          overflow: hidden;
+          width: 80px;
+          height: 80px;
+          border-radius: 10px;
+        }
+      }
+    }
+    p {
+      margin-bottom: 10px;
     }
   }
 }
